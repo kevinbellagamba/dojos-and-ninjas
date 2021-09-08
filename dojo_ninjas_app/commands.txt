@@ -1,0 +1,133 @@
+ kevinbellagamba@Kevins-MacBook-Air dojo_ninjas_proj % python manage.py makemigrations
+Migrations for 'dojo_ninjas_app':
+  dojo_ninjas_app/migrations/0001_initial.py
+    - Create model Dojo
+    - Create model Ninja
+(djangoPy3Env) kevinbellagamba@Kevins-MacBook-Air dojo_ninjas_proj % python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, dojo_ninjas_app, sessions
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying dojo_ninjas_app.0001_initial... OK
+  Applying sessions.0001_initial... OK
+(djangoPy3Env) kevinbellagamba@Kevins-MacBook-Air dojo_ninjas_proj % from dojo_ninjas_app.models import *
+from: can't read /var/mail/dojo_ninjas_app.models
+(djangoPy3Env) kevinbellagamba@Kevins-MacBook-Air dojo_ninjas_proj % python manage.py shell
+Python 3.9.6 (default, Jun 28 2021, 19:24:41) 
+Type 'copyright', 'credits' or 'license' for more information
+IPython 7.27.0 -- An enhanced Interactive Python. Type '?' for help.
+
+In [1]: from dojo_ninjas_app.models import *
+
+In [2]: first_dojo = Dojo.objects.create(name="Red", city="Boston", state="MA")
+
+In [3]: second_dojo = Dojo.objects.create(name="Orange", city="Cleveland", state="OH")
+
+In [4]: third_dojo = Dojo.objects.create(name="Teal", city="Miami", state="FL")
+
+In [5]: Dojo.objects.all()
+Out[5]: <QuerySet [<Dojo: Dojo object (1)>, <Dojo: Dojo object (2)>, <Dojo: Dojo object (3)>]>
+
+In [6]: first_dojo.delete()
+Out[6]: (1, {'dojo_ninjas_app.Ninja': 0, 'dojo_ninjas_app.Dojo': 1})
+
+In [7]: Dojo.objects.all()
+Out[7]: <QuerySet [<Dojo: Dojo object (2)>, <Dojo: Dojo object (3)>]>
+
+In [8]: second_dojo.delete()
+Out[8]: (1, {'dojo_ninjas_app.Ninja': 0, 'dojo_ninjas_app.Dojo': 1})
+
+In [9]: third_dojo.delete()
+Out[9]: (1, {'dojo_ninjas_app.Ninja': 0, 'dojo_ninjas_app.Dojo': 1})
+
+In [10]: Dojo.objects.all()
+Out[10]: <QuerySet []>
+
+In [11]: fourth_dojo = Dojo.objects.create(name="Blue", city="Chicago", state="IL")
+
+In [12]: fifth_dojo = Dojo.objects.create(name="Silver", city="Dallas", state="TX")
+
+In [13]: sixth_dojo = Dojo.objects.create(name="Black", city="Brooklyn", state="NY")
+
+In [14]: Dojo.objects.all()
+Out[14]: <QuerySet [<Dojo: Dojo object (4)>, <Dojo: Dojo object (5)>, <Dojo: Dojo object (6)>]>
+
+In [15]: Movie.objects.first()
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-15-77b337ae220f> in <module>
+----> 1 Movie.objects.first()
+
+NameError: name 'Movie' is not defined
+
+In [16]: Dojo.objects.first()
+Out[16]: <Dojo: Dojo object (4)>
+
+In [17]: first_ninja = Ninja.objects.create(dojo=fourth_dojo, first_name = "Kevin", last_name=
+    ...: "Bellagamba")
+
+In [18]: second_ninja = Ninja.objects.create(dojo=fourth_dojo, first_name = "Dan", last_name="
+    ...: Romanello")
+
+In [19]: third_ninja = Ninja.objects.create(dojo=fourth_dojo, first_name = "Teddy", last_name=
+    ...: "Boccuzzi")
+
+In [20]: fourth_ninja = Ninja.objects.create(dojo=fifth_dojo, first_name = "John", last_name="
+    ...: Smith")
+
+In [21]: fifth_ninja = Ninja.objects.create(dojo=fifth_dojo, first_name = "Dame", last_name="A
+    ...: dams")
+
+In [22]: sixth_ninja = Ninja.objects.create(dojo=fifth_dojo, first_name = "Steve", last_name="
+    ...: Jones")
+
+In [23]: seventh_ninja = Ninja.objects.create(dojo=sixth_dojo, first_name = "Chris", last_name
+    ...: ="Ogden")
+
+In [24]: eighth_ninja = Ninja.objects.create(dojo=sixth_dojo, first_name = "Ron", last_name="Pa
+    ...: cks")
+
+In [25]: ninth_ninja = Ninja.objects.create(dojo=sixth_dojo, first_name = "Donny", last_name="
+    ...: Chrisps")
+
+In [1]: from dojo_ninjas_app.models import *
+
+In [2]: Dojo.objects.first().ninjas.all()
+Out[2]: <QuerySet [<Ninja: Ninja object (1)>, <Ninja: Ninja object (2)>, <Ninja: Ninja object (3)>]>
+
+In [3]: Dojo.objects.last().ninjas.all()
+Out[3]: <QuerySet [<Ninja: Ninja object (7)>, <Ninja: Ninja object (8)>, <Ninja: Ninja object (9)>]>
+
+In [4]: Ninja.objects.last().dojo
+Out[4]: <Dojo: Black>
+
+In [2]: from dojo_ninjas_app.models import *
+
+In [3]: seventh_dojo = Dojo.objects.create(name="Green", city="Orlando", state="FL", descripti
+   ...: on="The best")
+
+In [4]: Dojo.objects.last()
+Out[4]: <Dojo: Green>
+
+In [5]: seventh_dojo = Dojo.objects.create(name="Yellow", city="Hartford", state="CT")
+
+In [6]: Dojo.objects.last()
+Out[6]: <Dojo: Yellow>
+
+In [7]: 
+

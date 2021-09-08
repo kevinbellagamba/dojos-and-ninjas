@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dojos and Ninjas</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Dojos and Ninjas</h1>
+        <div class="forms">
+            <div class="dojoForm">
+                <h2>Add a Dojo</h2>
+                        <form action="/addDojo" method="POST">
+                            {%csrf_token%}
+                            <label for="">Name</label>
+                            <input type="text" name="name">
+                            <label for="">City</label>
+                            <input type="text" name="city">
+                            <label for="">State</label>
+                            <input type="text" name="state">
+                            <button type="submit">Add</button>
+                        </form>
+            </div>
+            <div class="ninjaForm">
+                <h2>Add a Ninja</h2>
+                        <form action="/addNinja" method="POST">
+                            {%csrf_token%}
+                            <label for="">First Name</label>
+                            <input type="text" name="first_name">
+                            <label for="">Last Name</label>
+                            <input type="text" name="last_name">
+                            <label for="">Dojo</label>
+                            <select name="dojo">
+                                <option selected="selected" disabled="disabled">Select a Dojo</option>
+                                {% for dojo in dojos %}
+                                <option value="{{ dojo.id }}">{{ dojo.name }}</option>
+                                {% endfor %}
+                                </select>
+                            <button type="submit">Add</button>
+                        </form>
+            </div>
+        </div>
+        <div class="allData">
+            <h2>All the Dojos</h2>
+            {% for dojo in dojos %}
+                <h4>Ninjas at {{dojo.name}} Dojo</h4>
+                <ul>
+                    {% for ninja in dojo.ninjas.all %}
+                    <li>{{ninja.first_name}} {{ninja.last_name}}</li>
+                    {% endfor %}
+                </ul>
+            {% endfor %}
+        </div>
+    </div>
+    {% for dojo in dojos %}
+    <p>{{dojo.name}}</p>
+    {% endfor %}
+    {% for ninja in ninjas %}
+    <p>{{ninja.first_name}}</p>
+    {% endfor %}
+</body>
+</html>

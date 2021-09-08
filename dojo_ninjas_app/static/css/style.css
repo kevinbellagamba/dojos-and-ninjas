@@ -1,0 +1,104 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    border: 1px crimson dotted;
+}
+
+.container {
+    margin: 0px auto;
+    width: 970px;
+    min-height: 1200px;
+    background-color: grey;
+}
+
+h1 {
+    text-align: center;
+    padding: 15px;
+}
+
+.dojoForm {
+    float: left;
+    
+}
+
+.dojoForm h2 {
+    margin-left: 100px;
+}
+
+.dojoForm label {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    width: 80%;
+    margin-left: 100px;
+    font-size: 24px;
+}
+
+.dojoForm input {
+    margin-left: 100px;
+    font-size: 24px;
+}
+
+.dojoForm button {
+    display: block;
+    font-size: 24px;
+    padding: 5px;
+    border-radius: 10px;
+    margin: 20px;
+    margin-left: 100px;
+}
+
+
+.ninjaForm {
+    float: right;
+}
+
+.ninjaForm h2 {
+    margin-right: 100px;
+}
+
+.ninjaForm label {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    width: 80%;
+    margin-right: 100px;
+    font-size: 24px;
+}
+
+.ninjaForm input {
+    margin-right : 100px;
+    font-size: 24px;
+}
+
+.ninjaForm select {
+    margin-right : 100px;
+    font-size: 24px;
+}
+
+.ninjaForm button {
+    display: block;
+    font-size: 24px;
+    padding: 5px;
+    border-radius: 10px;
+    margin: 20px;
+    margin-left: 100px;
+}
+
+.forms {
+    min-height: 300px;
+    border-bottom: 2px solid black;
+    width: 90%;
+    margin: 0px auto;
+}
+
+.allData {
+    min-height: 300px;
+    border-bottom: 2px solid black;
+    width: 90%;
+    margin: 0px auto;
+}
+
+.allData h2 {
+    text-align: center;
+}
